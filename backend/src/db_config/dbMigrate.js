@@ -1,6 +1,6 @@
-const pool = require('./db.js');
+const pool = require('../db_config/db.js');
 
-export const migrate =async()=>{
+const migrate =async()=>{
     const connection = await pool.getConnection();
     try {
         //type of vehicles table
@@ -41,3 +41,4 @@ export const migrate =async()=>{
         connection.release();
     }
 }
+module.exports = migrate;

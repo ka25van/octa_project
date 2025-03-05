@@ -1,6 +1,6 @@
-const pool = require('./db.js');
+const pool = require('../db_config/db.js');
 
-export const firseed = async () => {
+const firstSeed = async () => {
     const connection = await pool.getConnection();
     try {
         //adding vehicle type
@@ -35,3 +35,4 @@ export const firseed = async () => {
         connection.release()
     }
 }
+module.exports = firstSeed;
