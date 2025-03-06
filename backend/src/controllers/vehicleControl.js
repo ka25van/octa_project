@@ -1,6 +1,6 @@
 const pool = require('../db_config/db.js');
 
-const getVehicletype = async (req, res) => {
+const getVehicleType = async (req, res) => {
     try {
         const [types] = await pool.query('SELECT * FROM vehicle_type')
         res.json(types);
@@ -20,7 +20,7 @@ const getVehicleOnType = async (req, res) => {
 
 }
 
-const booking = async (req, ree) => {
+const booking = async (req, res) => {
     const { firstName, lastName, vehicleId, startDate, endDate } = req.body;
     const connection = await pool.getConnection();
     try {
@@ -50,6 +50,7 @@ const booking = async (req, ree) => {
         res.status(201).json({ bookingId: result.insertId });
     } catch (error) {
         await connection.rollback();
+        console.log('Error in booking', error);
         res.status(500).json({ error: 'Booking failed' });
     } finally {
         connection.release();
@@ -76,4 +77,4 @@ const checkAvailable = async (req, res) => {
   }
 }
 
-module.exports = {getVehicletype, getVehicleOnType, booking, checkAvailable}
+module.exports = {getVehicleType, getVehicleOnType, booking, checkAvailable}
