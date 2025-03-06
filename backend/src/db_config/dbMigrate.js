@@ -17,7 +17,7 @@ const migrate =async()=>{
             id INT AUTO_INCREMENT PRIMARY KEY,
             type_id INT,
             model VARCHAR(100) NOT NULL,
-            FORIEGN KEY(type_id) REFERENCES vehicle_type(id)
+            FOREIGN KEY(type_id) REFERENCES vehicle_type(id)
             )`
         )
         //booking table
@@ -29,7 +29,7 @@ const migrate =async()=>{
             vehicle_id INT NOT NULL,
             start_date DATE NOT NULL,
             end_date DATE NOT NULL,
-            FORIEGN KEY(vehicle_id) REFERENCES vehicle(id)
+            FOREIGN KEY(vehicle_id) REFERENCES vehicle(id)
             )
             `)
         console.log('Migration successfull');

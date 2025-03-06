@@ -4,7 +4,7 @@ const firstSeed = async () => {
     const connection = await pool.getConnection();
     try {
         //adding vehicle type
-        const [vehicleType] = await connection.query('INSERT INTO vehicle_type(name,wheels)?',
+        const [vehicleType] = await connection.query('INSERT INTO vehicle_type(name,wheels) VALUES ?',
             [[
                 ['Hatchback', 4],
                 ['SUV', 4],
