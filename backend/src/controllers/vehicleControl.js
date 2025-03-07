@@ -2,7 +2,8 @@ const pool = require('../db_config/db.js');
 
 const getVehicleType = async (req, res) => {
     try {
-        const [types] = await pool.query('SELECT * FROM vehicle_type')
+        const [types] = await pool.query('SELECT * FROM vehicle_type LIMIT 5')
+        console.log("Types", types);
         res.json(types);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -12,7 +13,8 @@ const getVehicleType = async (req, res) => {
 
 const getVehicleOnType = async (req, res) => {
     try {
-        const [vehicles] = await pool.query('SELECT * FROM vehicle WHERE type_id = ?', [req.params.typeId])
+        const [vehicles] = await pool.query('SELECT DISTINCT * FROM vehicle WHERE type_id = ?', [req.params.typeId])
+        console.log("wheels",vehicles);
         res.json(vehicles);
     } catch (error) {
         res.status(500).json({ message: error.message });
